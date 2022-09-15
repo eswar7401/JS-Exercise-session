@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="Description" content="JS LocalStorage - Demo" />
+    <title>JS Seeionstorage - Demo</title>
+  </head>
+  <body>
+
+    <h2>Session storage - Demo</h2>
+    <div class="register">
+      <form action="#">
+        <h1>Register</h1>
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" name="email" id="email" />
+        </div>
+        <div>
+          <label for="password">Password:</label>
+          <input type="password" name="password" id="password" />
+        </div>
+        <div>
+          <input type="button" value="Register" onclick="store()" />
+        </div>
+      </form>
+    </div>
+    <hr />
+    <div class="login">
+      <form action="#">
+        <h1>Sign-In</h1>
+        <div>
+          <label for="login-email">Email:</label>
+          <input type="email" name="login-email" id="login-email" />
+        </div>
+        <div>
+          <label for="login-password">Password:</label>
+          <input type="password" name="login-password" id="login-password" />
+        </div>
+        <div>
+          <input type="button" value="Sign-in" onclick="check()" />
+        </div>
+      </form>
+    </div>
+<hr/>
+
+<p class="text center"><a href="#"class="logout">logout </a>
+    <script>
+        //sessionStorage.setItem("user", "eswar");
+
+      function store() {
+        const email = document.querySelector("#email").value;
+        const password = document.querySelector("#password").value;
+        // console.log(email, password);
+        sessionStorage.setItem(email, password);
+        alert("User details stored successfully....");
+        document.querySelector("#login").classList.add(login);
+      }
+
+      function check() {
+        const email = document.querySelector("#login-email").value;
+        const password = document.querySelector("#login-password").value;
+        const sessionstorageEmail = sessionStorage.getItem(email);
+        if (!sessionstorageEmail) {
+          alert("No user with the given name");
+        } else {
+          const sessionstoragePwd = sessionStorage.getItem(email);
+          if (password === sessionstoragePwd) {
+            alert("Access allowed...");
+          } else {
+            alert("Not Authorized or check password...");
+          }
+        }
+      }
+      let name=sessionStorage.getItem('name')?sessionStorage.getItem('name')
+      console.log(name);
+      if(name=='')
+      {
+        alert('need to login first');
+      }
+      document.querySelector(".logout").addEventListener('click',(e)=>{
+        e.preventDefault();
+      })
+        function logout(){
+          sessionStorage.removeItem('name');
+          sessionStorage.removeItem('email');
+        }
+    </script>
+  </body>
+</html>
